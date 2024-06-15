@@ -21,14 +21,18 @@ def generate_diagrams_script(tfplan, openai_api_key, output_path):
         resource_name = resource['name']
         prompt += f"\n- {resource_type}: {resource_name}"
 
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=prompt,
-        max_tokens=500
+    messages = [
+      {"role": "system", "content": "You are a helpful assistant."},
+      {"role": "user", "content": prompt}
+    ]
+    response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",  # or another relevant model
+    messages=messages,
+    max_tokens=500
     )
+    script_content = response.choices[0].message["content"].strip()
 
-    script_content = response.choices[0].text.strip()
-
+    
     with open(output_path, 'w') as f:
         f.write(script_content)
 
