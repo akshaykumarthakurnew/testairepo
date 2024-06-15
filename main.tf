@@ -48,8 +48,4 @@ resource "azurerm_app_service" "appservice" {
     linux_fx_version = "PYTHON|3.8" # Example runtime
     vnet_route_all_enabled = true
   }
-
-  vnet_integration {
-    subnet_id = azurerm_subnet.subnet.id
-  }
 }
