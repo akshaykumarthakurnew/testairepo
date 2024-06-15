@@ -25,7 +25,7 @@ def generate_diagrams_script(tfplan, openai_api_key, output_path):
       {"role": "system", "content": "You are a helpful assistant."},
       {"role": "user", "content": prompt}
     ]
-    response = openai.ChatCompletion.create(
+    response = openai.chat.completions.create(
     model="gpt-3.5-turbo",  # or another relevant model
     messages=messages,
     max_tokens=500
