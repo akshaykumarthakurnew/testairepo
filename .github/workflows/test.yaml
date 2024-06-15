@@ -1,9 +1,7 @@
 name: Generate Terraform Diagram
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   generate-diagram:
